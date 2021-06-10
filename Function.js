@@ -1,12 +1,16 @@
 let userScore = 0;
 let computerScore = 0;
-const userScore_span = document.getElementById("user-score");
-const computerScore_span = document.getElementById("computer-score");
+let userScore_span = document.getElementById("user-score");
+let computerScore_span = document.getElementById("computer-score");
 const scoreBoard_div = document.querySelector(".score-board");
 const result_p = document.querySelector(".result > p");
 const rock_div = document.getElementById("r");
 const paper_div = document.getElementById("p");
 const scissors_div = document.getElementById("s");
+const action_p = document.getElementById("action-message");
+const button_div = document.getElementById("btnn")
+
+
 
 function getComputerChoice(){
     const choices = ['r', 'p', 's'];
@@ -30,6 +34,15 @@ document.getElementById(userChoice).classList.add('green-glow');
 setTimeout(() =>
     document.getElementById(userChoice).classList.remove('green-glow')
 , 300);
+
+if(userScore >= 5 && computerScore < 5){
+    action_p.innerHTML = "Hurraah, You Won the Game";
+    rock_div.style.display = "none";
+    paper_div.style.display = "none";
+    scissors_div.style.display = "none";
+    result_p.style.display = "none"; 
+    button_div.style.display = "block"; 
+    }
 }
 
 
@@ -42,6 +55,15 @@ function lose(userChoice, computerChoice) {
 setTimeout(() =>
     document.getElementById(userChoice).classList.remove('red-glow')
 , 300);
+
+    if (computerScore >= 5 && userScore < 5){
+    action_p.innerHTML = "Oh, You Just Lost";
+    rock_div.style.display = "none";
+    paper_div.style.display = "none";
+    scissors_div.style.display = "none";
+    result_p.style.display = "none";
+    button_div.style.display = "block";
+    }
 }
 
 function draw(userChoice, computerChoice) {
@@ -50,7 +72,16 @@ function draw(userChoice, computerChoice) {
 setTimeout(() =>
     document.getElementById(userChoice).classList.remove('gray-glow')
 , 300);
+
+if (computerScore == 5 && userScore == 5){
+    action_p.innerHTML = "Oh, It's Just a Draw";
+    rock_div.style.display = "none";
+    paper_div.style.display = "none";
+    scissors_div.style.display = "none";
+    result_p.style.display = "none";
+    }
 }
+
 
 
 function game(userChoice){
